@@ -7,7 +7,7 @@ This Calendar application allows users to manage their events by adding, editing
 ## Features
 
 - **Event Management**: Add, edit, and delete events with name, start/end time, and optional description.
-- **Event List**: View all events for the selected day in a modal or side panel.
+- **Event List**: View all events for the selected day in a side panel.
 
 - **Data Persistence**: Store events in `localStorage` or in-memory for page refresh retention.
 
