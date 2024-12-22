@@ -27,11 +27,11 @@ This Calendar application allows users to manage their events by adding, editing
 
 ## Setup Instructions
 
-1. **Clone the Repository**:
+1. **Clone the Repository:**
 
    ```bash
- git clone https://github.com/swayamsharma16/calendar-dashboard
- cd calendar-dashboard
+   git clone https://github.com/swayamsharma16/calendar-dashboard
+   cd calendar-dashboard
    ```
 
 2. **Install Dependencies**:
