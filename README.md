@@ -19,13 +19,19 @@ This Calendar application allows users to manage their events by adding, editing
 
 - **Event Filtering**: Filter events by keywords for easy searching.
 
+## Dependencies
+
+- React
+- TailwindCSS (for styling)
+- Dialog component for event detail editing
+
 ## Setup Instructions
 
 1. **Clone the Repository**:
 
    ```bash
-   git clone <repository-url>
-   cd <project-directory>
+ git clone https://github.com/swayamsharma16/calendar-dashboard
+ cd calendar-dashboard
    ```
 
 2. **Install Dependencies**:
@@ -44,10 +50,3 @@ This Calendar application allows users to manage their events by adding, editing
    npm start
    ```
 
-   The app will be available at `http://localhost:3000`.
-
-## Dependencies
-
-- React
-- TailwindCSS (for styling)
-- Dialog component for event detail editing
