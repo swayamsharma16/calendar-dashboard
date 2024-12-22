@@ -59,7 +59,7 @@ export default function Calendar() {
     }
   }, [currentEvents]);
 
-  // Calendar Logic Functions
+  // Calendar  Functions
   const getDaysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   };
@@ -72,19 +72,19 @@ export default function Calendar() {
     return new Intl.DateTimeFormat("en-US", options).format(date);
   };
 
-  // Generate calendar grid data
+
   const generateCalendarData = () => {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDayOfMonth = getFirstDayOfMonth(currentDate);
     const weeks = [];
     let days = [];
 
-    // Add empty cells for days before the first of the month
+ 
     for (let i = 0; i < firstDayOfMonth; i++) {
       days.push(null);
     }
 
-    // Add days of the month
+
     for (let day = 1; day <= daysInMonth; day++) {
       days.push(
         new Date(currentDate.getFullYear(), currentDate.getMonth(), day)
@@ -96,7 +96,7 @@ export default function Calendar() {
       }
     }
 
-    // Add empty cells for remaining days
+
     while (days.length > 0 && days.length < 7) {
       days.push(null);
       if (days.length === 7) {
@@ -134,72 +134,22 @@ export default function Calendar() {
       startTime: "09:00",
       endTime: "10:00",
       description: "",
-      category: "work", // Add this line
+      category: "work",
     });
     setIsEdit(false);
     setIsDialogOpen(true);
   };
 
-  // const handleAddOrUpdateEvent = (e) => {
-  //   e.preventDefault();
-
-  //   const eventDate = selectedDate;
-  //   const startDateTime = new Date(eventDate);
-  //   const endDateTime = new Date(eventDate);
-
-  //   const [startHours, startMinutes] = eventDetails.startTime.split(":");
-  //   const [endHours, endMinutes] = eventDetails.endTime.split(":");
-
-  //   startDateTime.setHours(parseInt(startHours), parseInt(startMinutes));
-  //   endDateTime.setHours(parseInt(endHours), parseInt(endMinutes));
-
-  //   // Check for overlapping events
-  //   const overlapping = currentEvents.some((event) => {
-  //     if (event.id === eventDetails.id) return false;
-  //     const eventStart = new Date(event.start);
-  //     const eventEnd = new Date(event.end);
-  //     return (
-  //       eventStart.toDateString() === startDateTime.toDateString() &&
-  //       ((startDateTime >= eventStart && startDateTime < eventEnd) ||
-  //         (endDateTime > eventStart && endDateTime <= eventEnd))
-  //     );
-  //   });
-
-  //   if (overlapping) {
-  //     alert("Event times overlap. Please choose a different time.");
-  //     return;
-  //   }
-
-  //   const newEvent = {
-  //     id: isEdit
-  //       ? eventDetails.id
-  //       : `${startDateTime.toISOString()}-${eventDetails.title}`,
-  //     title: eventDetails.title,
-  //     start: startDateTime,
-  //     end: endDateTime,
-  //     description: eventDetails.description,
-  //     category: eventDetails.category, // Save the category
-  //   };
-
-  //   setCurrentEvents((prev) =>
-  //     isEdit
-  //       ? prev.map((event) => (event.id === eventDetails.id ? newEvent : event))
-  //       : [...prev, newEvent]
-  //   );
-
-  //   handleCloseDialog();
-  // };
-
   const handleAddOrUpdateEvent = (e) => {
     e.preventDefault();
 
-    // Validate start and end times
+
     const timeError = validateTimeRange(
       eventDetails.startTime,
       eventDetails.endTime
     );
     if (timeError) {
-      alert(timeError); // Optionally, show this in a more user-friendly way (e.g., a form validation message)
+      alert(timeError);
       return;
     }
 
@@ -215,7 +165,7 @@ export default function Calendar() {
 
     // Check for overlapping events
     const overlapping = currentEvents.some((event) => {
-      if (event.id === eventDetails.id) return false; // Skip current event (if editing)
+      if (event.id === eventDetails.id) return false; 
 
       const eventStart = new Date(event.start);
       const eventEnd = new Date(event.end);
@@ -239,7 +189,7 @@ export default function Calendar() {
       start: startDateTime,
       end: endDateTime,
       description: eventDetails.description,
-      category: eventDetails.category, // Save the category
+      category: eventDetails.category,
     };
 
     setCurrentEvents((prev) =>
@@ -288,7 +238,7 @@ export default function Calendar() {
       startTime: "",
       endTime: "",
       description: "",
-      category: "work", // Changed from empty string to "work"
+      category: "work",
     });
   };
   const filteredEvents = filterKeyword
@@ -297,7 +247,7 @@ export default function Calendar() {
       )
     : currentEvents;
 
-  // UI Rendering
+
   return (
     <div>
       <div className="flex w-full px-10 justify-start items-start gap-8">
@@ -362,12 +312,7 @@ export default function Calendar() {
                 >
                   Previous
                 </button>
-                <button
-                  onClick={goToToday}
-                  className="p-2 rounded bg-green-500 text-white hover:bg-green-600 transition-colors duration-200"
-                >
-                  Today
-                </button>
+
                 <button
                   onClick={goToNextMonth}
                   className="p-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200"
@@ -409,17 +354,13 @@ export default function Calendar() {
                         key={`${weekIndex}-${dayIndex}`}
                         onClick={() => handleDateClick(date)}
                         className={`min-h-[120px] bg-white p-2 cursor-pointer
-            ${isToday ? "bg-yellow-100" : ""}
+            ${isToday ? "bg-blue-100" : ""}
             ${isWeekend ? "bg-gray-50" : ""}
             hover:bg-gray-50`}
                       >
                         {date && (
                           <>
-                            <div
-                              className={`text-right ${
-                                isToday ? "text-blue-600 font-bold" : ""
-                              }`}
-                            >
+                            <div className={`text-right ${isToday ? " " : ""}`}>
                               {date.getDate()}
                             </div>
                             <div className="mt-1">
@@ -456,7 +397,7 @@ export default function Calendar() {
 
       {/* Event Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
+        <DialogContent className="bg-white ">
           <DialogHeader>
             <DialogTitle>{isEdit ? "Edit Event" : "Add New Event"}</DialogTitle>
           </DialogHeader>
